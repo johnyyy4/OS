@@ -155,6 +155,7 @@ xorg-xwayland
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 hyprpolkitagent
+swaybg
 polkit
 qt6-wayland
 kitty

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
+  <!-- felineOS placeholder wallpaper: black cat on green -->
+  <defs>
+    <radialGradient id="bg" cx="1920" cy="1150" r="2300" gradientUnits="userSpaceOnUse">
+      <stop offset="0"   stop-color="#3f8f55"/>
+      <stop offset="0.45" stop-color="#245c36"/>
+      <stop offset="1"   stop-color="#0c2516"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="1920" cy="1180" r="620" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8fd49c" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#8fd49c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="3840" height="2160" fill="url(#bg)"/>
+  <circle cx="1920" cy="1180" r="620" fill="url(#glow)"/>
+
+  <!-- ground shadow -->
+  <ellipse cx="1950" cy="1895" rx="460" ry="42" fill="#000" opacity="0.28"/>
+
+  <g fill="#0b0b0b">
+    <!-- tail (starts at the base of the body) -->
+    <path d="M2080 1865 C2380 1890 2500 1680 2390 1530 C2345 1470 2290 1485 2305 1535"
+          fill="none" stroke="#0b0b0b" stroke-width="72" stroke-linecap="round"/>
+    <!-- body: sitting pear shape, flowing up into the neck -->
+    <path d="M1790 1230
+             C1740 1330 1650 1460 1640 1640
+             C1632 1780 1680 1870 1760 1885
+             L2085 1885
+             C2170 1870 2205 1780 2198 1640
+             C2190 1460 2100 1330 2050 1230 Z"/>
+    <!-- head -->
+    <ellipse cx="1920" cy="1130" rx="215" ry="190"/>
+    <!-- ears -->
+    <path d="M1735 1060 L1758 830 L1885 960 Z"/>
+    <path d="M2105 1060 L2082 830 L1955 960 Z"/>
+    <!-- front paws -->
+    <ellipse cx="1840" cy="1880" rx="78" ry="38"/>
+    <ellipse cx="2000" cy="1880" rx="78" ry="38"/>
+  </g>
+
+  <!-- inner ears -->
+  <path d="M1768 1000 L1778 890 L1850 965 Z" fill="#1d3b27"/>
+  <path d="M2072 1000 L2062 890 L1990 965 Z" fill="#1d3b27"/>
+
+  <!-- eyes -->
+  <ellipse cx="1840" cy="1120" rx="42" ry="30" fill="#d9f55f"/>
+  <ellipse cx="2000" cy="1120" rx="42" ry="30" fill="#d9f55f"/>
+  <ellipse cx="1840" cy="1120" rx="9"  ry="26" fill="#0b0b0b"/>
+  <ellipse cx="2000" cy="1120" rx="9"  ry="26" fill="#0b0b0b"/>
+  <circle  cx="1852" cy="1110" r="6" fill="#fff" opacity="0.8"/>
+  <circle  cx="2012" cy="1110" r="6" fill="#fff" opacity="0.8"/>
+
+  <!-- nose -->
+  <path d="M1906 1185 L1934 1185 L1920 1202 Z" fill="#3a2a2a"/>
+
+  <text x="1920" y="2080" text-anchor="middle" font-family="Noto Sans, sans-serif"
+        font-size="44" letter-spacing="8" fill="#ffffff" opacity="0.22">felineOS</text>
+</svg>

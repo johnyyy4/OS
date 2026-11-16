@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# felineOS live ISO: guess the timezone from the public IP so the clock is right.
+# Tries for at most ~8 seconds; if there's no network it does nothing (stays on UTC).
+# The installed system sets the timezone in the installer instead.
+
+deadline=$((SECONDS + 8))
+while (( SECONDS < deadline )); do
+    for url in https://ipapi.co/timezone "http://ip-api.com/line?fields=timezone"; do
+        tz=$(curl -fsS --max-time 2 "$url" 2>/dev/null | tr -d '[:space:]')
+        # Only accept real zone names, e.g. Europe/Warsaw.
+        if [[ $tz =~ ^[A-Za-z_]+(/[A-Za-z0-9_+-]+)+$ && -f /usr/share/zoneinfo/$tz ]]; then
+            ln -sf "/usr/share/zoneinfo/$tz" /etc/localtime
+            echo "Timezone set to $tz"
+            exit 0
+        fi
+    done
+    sleep 1
+done
+echo "Could not detect timezone, staying on UTC"

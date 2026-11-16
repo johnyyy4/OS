@@ -1,0 +1,6 @@
+[Desktop Entry]
+# felineOS: hidden from the app launcher (still installed, just not listed)
+Type=Application
+Name=stoken-gui-small
+NoDisplay=true
+Hidden=true

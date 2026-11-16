@@ -1,0 +1,15 @@
+[Unit]
+Description=Detect timezone for the felineOS live session
+# Runs before the desktop starts so the clock is right from the first frame.
+# Gives up after ~8s without network, so offline boots aren't held up long.
+After=systemd-networkd.service systemd-resolved.service
+Before=getty@tty1.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/felineos-live-timezone
+TimeoutStartSec=15
+
+[Install]
+WantedBy=multi-user.target

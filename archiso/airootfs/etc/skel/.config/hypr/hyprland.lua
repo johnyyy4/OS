@@ -27,6 +27,7 @@ hl.monitor({
 local terminal    = "kitty"
 local fileManager = "thunar"
 local menu        = "fuzzel"
+local wallpaper   = "/usr/share/backgrounds/felineos/black-cat.png"
 
 
 -------------------
@@ -34,6 +35,7 @@ local menu        = "fuzzel"
 -------------------
 
 hl.on("hyprland.start", function ()
+    hl.exec_cmd("swaybg -m fill -i " .. wallpaper)
     hl.exec_cmd("waybar")
     hl.exec_cmd("mako")
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
@@ -134,7 +136,7 @@ hl.config({
 
 hl.config({
     misc = {
-        force_default_wallpaper = 0,   -- plain default wallpaper until we ship a felineOS one
+        force_default_wallpaper = 0,   -- our own wallpaper is drawn by swaybg (see AUTOSTART)
         disable_hyprland_logo   = true,
         -- Uses VRR/FreeSync only for fullscreen apps (games), avoiding flicker on the desktop.
         vrr                     = 2,

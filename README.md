@@ -26,6 +26,7 @@ Boot the ISO in QEMU/virt-manager with **UEFI, Secure Boot off**. archiso images
 Hyprland needs 3D acceleration: use a **Virtio** video device with **3D acceleration** on, and Spice display with **OpenGL** on.
 
 The live system logs in as user `feline` (no password, passwordless sudo) and starts Hyprland.
+On boot it guesses the timezone from your public IP (ipapi.co, fallback ip-api.com), waiting at most ~8 s; offline it stays on UTC.
 
 ## Default keybinds
 | Keys | Action |
@@ -46,7 +47,10 @@ The live system logs in as user `feline` (no password, passwordless sudo) and st
   - `profiledef.sh`: ISO name, label, boot modes
   - `packages.x86_64`: packages included in the live system
   - `airootfs/`: files copied into the live system
-    - `etc/skel/.config/`: default user configs (Hyprland, Waybar, mako, fuzzel)
+    - `etc/skel/.config/`: default user configs (Hyprland, Waybar, mako, fuzzel, kitty)
+    - `usr/share/backgrounds/felineos/`: wallpapers
+    - `usr/local/share/applications/`: hides unwanted entries from the app launcher
+- `assets/wallpapers/`: wallpaper sources (SVG). Re-render with `rsvg-convert -w 3840 -h 2160 black-cat.svg -o black-cat.png`
   - `efiboot/`, `grub/`, `syslinux/`: boot menus
 - `build.sh`: builds the ISO
 
