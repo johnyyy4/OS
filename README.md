@@ -5,8 +5,8 @@ An Arch-based Linux distro focused on cats, gaming, built to be lightweight and 
 **Status:** no.
 
 ## Roadmap
-1. **Base ISO**: boots, felineOS branding, reproducible build ✅
-2. **Gaming base**: Steam, Proton, gamescope, MangoHud, GameMode, AMD/Intel drivers *(in progress; NVIDIA and gaming kernel still to do)*
+1. **Base ISO**: boots, felineOS branding, reproducible build 
+2. **Gaming base**: Steam, Proton, gamescope, MangoHud, GameMode, AMD/Intel drivers
 3. **Desktop**: Hyprland (Wayland) with a default felineOS rice, including cat-themed options *(in progress: "Tabby" theme)*
 4. **Installer**
 5. **Later**: Steam console mode, own package repo, theme presets
