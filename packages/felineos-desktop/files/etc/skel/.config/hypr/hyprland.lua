@@ -5,8 +5,8 @@
 -- anything you set here overrides the defaults.
 --
 -- Want full control instead? Delete the dofile line and copy
--- /etc/xdg/hypr/hyprland.lua into this file.
-dofile("/etc/xdg/hypr/hyprland.lua")
+-- /usr/share/felineos/config/hypr/hyprland.lua into this file.
+dofile("/usr/share/felineos/config/hypr/hyprland.lua")
 
 -- Examples (remove the "--" to enable):
 -- hl.config({ general = { gaps_out = 20 } })

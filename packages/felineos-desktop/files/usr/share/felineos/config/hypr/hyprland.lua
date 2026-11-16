@@ -1,5 +1,5 @@
 -- felineOS default Hyprland config
--- Installed by the felineos-desktop package to /etc/xdg/hypr/hyprland.lua.
+-- Installed by the felineos-desktop package to /usr/share/felineos/config/hypr/hyprland.lua.
 -- Users load it from ~/.config/hypr/hyprland.lua via dofile() (see /etc/skel), then
 -- override whatever they like below that line. Don't edit this file directly:
 -- package updates replace it.
@@ -42,9 +42,11 @@ local wallpaper   = "/usr/share/backgrounds/felineos/black-cat.png"
 
 hl.on("hyprland.start", function ()
     hl.exec_cmd("swaybg -m fill -i " .. wallpaper)
-    hl.exec_cmd("waybar")
-    -- mako doesn't read /etc/xdg, so point it at our default unless the user has their own.
-    hl.exec_cmd("[ -f ~/.config/mako/config ] && exec mako || exec mako --config /etc/xdg/mako/config")
+    -- Waybar would fall back to its own stock config in /etc/xdg, so point it at ours
+    -- unless the user has their own in ~/.config/waybar.
+    hl.exec_cmd("[ -f ~/.config/waybar/config.jsonc ] || [ -f ~/.config/waybar/config ] && exec waybar || exec waybar -c /usr/share/felineos/config/waybar/config.jsonc -s /usr/share/felineos/config/waybar/style.css")
+    -- mako doesn't search XDG_CONFIG_DIRS, so point it at ours unless the user has their own.
+    hl.exec_cmd("[ -f ~/.config/mako/config ] && exec mako || exec mako --config /usr/share/felineos/config/mako/config")
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
 end)
 
