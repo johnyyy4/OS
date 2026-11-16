@@ -1,0 +1,14 @@
+# felineOS "Tabby" notifications
+font=Noto Sans 11
+background-color=#1e1b18e6
+text-color=#f3e9df
+border-color=#ff8c42
+border-size=2
+border-radius=12
+padding=12
+margin=12
+default-timeout=5000
+
+[urgency=critical]
+border-color=#ff5c5c
+default-timeout=0

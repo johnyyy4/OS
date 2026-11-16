@@ -126,3 +126,47 @@ xdg-utils
 xfsprogs
 xl2tpd
 zsh
+# ---- felineOS: graphics & gaming ----
+mesa
+lib32-mesa
+vulkan-radeon
+lib32-vulkan-radeon
+vulkan-intel
+lib32-vulkan-intel
+vulkan-icd-loader
+lib32-vulkan-icd-loader
+steam
+gamescope
+mangohud
+lib32-mangohud
+gamemode
+lib32-gamemode
+ttf-liberation
+lib32-pipewire
+# ---- felineOS: audio ----
+pipewire
+pipewire-alsa
+pipewire-pulse
+wireplumber
+pavucontrol
+# ---- felineOS: Hyprland desktop ----
+hyprland
+xorg-xwayland
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+hyprpolkitagent
+polkit
+qt6-wayland
+kitty
+waybar
+fuzzel
+mako
+thunar
+wl-clipboard
+grim
+slurp
+brightnessctl
+playerctl
+noto-fonts
+noto-fonts-emoji
+ttf-jetbrains-mono-nerd

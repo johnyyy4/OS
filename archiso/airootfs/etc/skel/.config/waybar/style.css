@@ -1,0 +1,58 @@
+/* felineOS "Tabby" theme */
+@define-color base     #1e1b18;
+@define-color surface  #2a2521;
+@define-color muted    #4a423b;
+@define-color text     #f3e9df;
+@define-color accent   #ff8c42;
+@define-color accent2  #ffc15e;
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Noto Sans", sans-serif;
+    font-size: 13px;
+    border: none;
+    min-height: 0;
+}
+
+window#waybar {
+    background: alpha(@base, 0.85);
+    color: @text;
+    border-radius: 12px;
+    border: 2px solid alpha(@accent, 0.6);
+}
+
+#custom-cat {
+    color: @base;
+    background: @accent;
+    border-radius: 9px;
+    padding: 0 12px;
+    margin: 4px;
+    font-weight: bold;
+}
+
+#workspaces button {
+    color: @text;
+    padding: 0 8px;
+    margin: 4px 2px;
+    border-radius: 8px;
+}
+#workspaces button.active {
+    background: @accent;
+    color: @base;
+}
+#workspaces button:hover {
+    background: @muted;
+}
+
+#clock {
+    font-weight: bold;
+    color: @accent2;
+}
+
+#tray, #pulseaudio, #network, #battery {
+    padding: 0 10px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    background: @surface;
+}
+#battery.warning  { color: @accent2; }
+#battery.critical { color: #ff5c5c; }

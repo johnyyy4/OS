@@ -1,0 +1,15 @@
+[Unit]
+Description=Create the felineOS live user
+ConditionPathExists=!/home/feline
+Before=getty@tty1.service systemd-user-sessions.service
+After=systemd-sysusers.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# -m copies /etc/skel, so the live session gets the same defaults an installed system will.
+ExecStart=/usr/bin/useradd -m -G wheel,video,audio,input,gamemode -s /bin/bash -c "felineOS live" feline
+ExecStart=/usr/bin/passwd -d feline
+
+[Install]
+WantedBy=multi-user.target
