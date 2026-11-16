@@ -1,0 +1,23 @@
+# Maintainer: felineOS team (johnyyy4, pokoplokop2008)
+# Meta package: everything felineOS needs for gaming on AMD and Intel GPUs.
+pkgname=felineos-gaming
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="felineOS gaming stack: Steam, gamescope, MangoHud, GameMode, AMD/Intel Vulkan"
+arch=('any')
+url="https://github.com/johnyyy4/OS"
+license=('LicenseRef-felineOS')   # TODO: pick a real license for the project
+depends=(
+    steam gamescope
+    mangohud lib32-mangohud
+    gamemode lib32-gamemode
+    mesa lib32-mesa
+    vulkan-radeon lib32-vulkan-radeon
+    vulkan-intel lib32-vulkan-intel
+    vulkan-icd-loader lib32-vulkan-icd-loader
+    lib32-pipewire ttf-liberation
+)
+
+package() {
+    :
+}

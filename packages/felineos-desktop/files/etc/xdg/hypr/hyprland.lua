@@ -1,4 +1,8 @@
 -- felineOS default Hyprland config
+-- Installed by the felineos-desktop package to /etc/xdg/hypr/hyprland.lua.
+-- Users load it from ~/.config/hypr/hyprland.lua via dofile() (see /etc/skel), then
+-- override whatever they like below that line. Don't edit this file directly:
+-- package updates replace it.
 -- Based on the official Hyprland 0.57 example config (Lua).
 -- Docs: https://wiki.hypr.land/configuring/
 --
@@ -12,6 +16,8 @@
 ---- MONITORS ----
 ------------------
 
+-- "preferred" = the monitor's native resolution (1080p, 1440p, 4K...), detected
+-- automatically. Note it may pick 60 Hz on some high-refresh monitors; see TODO in README.
 hl.monitor({
     output   = "",
     mode     = "preferred",
@@ -37,7 +43,8 @@ local wallpaper   = "/usr/share/backgrounds/felineos/black-cat.png"
 hl.on("hyprland.start", function ()
     hl.exec_cmd("swaybg -m fill -i " .. wallpaper)
     hl.exec_cmd("waybar")
-    hl.exec_cmd("mako")
+    -- mako doesn't read /etc/xdg, so point it at our default unless the user has their own.
+    hl.exec_cmd("[ -f ~/.config/mako/config ] && exec mako || exec mako --config /etc/xdg/mako/config")
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
 end)
 

@@ -15,11 +15,20 @@ An Arch-based Linux distro focused on cats, gaming, built to be lightweight and 
 Requires an Arch Linux host.
 
 ```sh
-sudo pacman -S archiso
+sudo pacman -S archiso base-devel
 sudo ./build.sh
 ```
 
-The ISO ends up in `out/`.
+`build.sh` first builds our own packages (`packages/*`) into a local repo in `repo/`, then builds the ISO with them. The ISO ends up in `out/`.
+
+## felineOS packages
+Everything felineOS-specific is shipped as normal pacman packages, so installed systems get fixes through `pacman -Syu`:
+- `felineos-desktop`: Hyprland and desktop apps, plus the Tabby theme installed as system-wide defaults in `/etc/xdg` (Hyprland, Waybar, fuzzel, kitty, mako) and wallpapers.
+- `felineos-gaming`: Steam, gamescope, MangoHud, GameMode, Mesa and Vulkan drivers for AMD and Intel.
+
+### Ricing
+- **Hyprland:** `~/.config/hypr/hyprland.lua` loads the felineOS defaults with `dofile(...)`. Add your changes below that line and they override the defaults, while you still get theme updates.
+- **Waybar, fuzzel, kitty, mako:** copy the file from `/etc/xdg/<app>/` to `~/.config/<app>/` and edit your copy. Yours wins.
 
 ## Testing in a VM
 Boot the ISO in QEMU/virt-manager with **UEFI, Secure Boot off**. archiso images aren't signed for Secure Boot.
@@ -27,6 +36,10 @@ Hyprland needs 3D acceleration: use a **Virtio** video device with **3D accelera
 
 The live system logs in as user `feline` (no password, passwordless sudo) and starts Hyprland.
 On boot it guesses the timezone from your public IP (ipapi.co, fallback ip-api.com), waiting at most ~8 s; offline it stays on UTC.
+
+## Display
+Resolution is automatic: Hyprland uses each monitor's native resolution (1080p, 1440p, 4K...).
+**TODO:** some high-refresh monitors report 60 Hz as their preferred mode; we still need an automatic "highest refresh rate at native resolution" step.
 
 ## Default keybinds
 | Keys | Action |
@@ -47,9 +60,7 @@ On boot it guesses the timezone from your public IP (ipapi.co, fallback ip-api.c
   - `profiledef.sh`: ISO name, label, boot modes
   - `packages.x86_64`: packages included in the live system
   - `airootfs/`: files copied into the live system
-    - `etc/skel/.config/`: default user configs (Hyprland, Waybar, mako, fuzzel, kitty)
-    - `usr/share/backgrounds/felineos/`: wallpapers
-    - `usr/local/share/applications/`: hides unwanted entries from the app launcher
+- `packages/`: felineOS's own packages (PKGBUILD + `files/` laid out like the target system)
 - `assets/wallpapers/`: wallpaper sources (SVG). Re-render with `rsvg-convert -w 3840 -h 2160 black-cat.svg -o black-cat.png`
   - `efiboot/`, `grub/`, `syslinux/`: boot menus
 - `build.sh`: builds the ISO

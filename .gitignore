@@ -3,3 +3,6 @@
 /out/
 *.iso
 *.qcow2
+/repo/
+/build/
+*.pkg.tar.zst

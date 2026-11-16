@@ -1,0 +1,26 @@
+# Maintainer: felineOS team (johnyyy4, pokoplokop2008)
+# felineOS Hyprland desktop: pulls in the desktop apps and installs the default
+# "Tabby" theme as system-wide defaults in /etc/xdg (users override in ~/.config).
+pkgname=felineos-desktop
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="felineOS Hyprland desktop: default configs, Tabby theme and wallpapers"
+arch=('any')
+url="https://github.com/johnyyy4/OS"
+license=('LicenseRef-felineOS')   # TODO: pick a real license for the project
+depends=(
+    hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
+    hyprpolkitagent polkit qt6-wayland xorg-xwayland
+    waybar fuzzel mako kitty swaybg thunar pavucontrol
+    wl-clipboard grim slurp brightnessctl playerctl
+    pipewire pipewire-alsa pipewire-pulse wireplumber
+    noto-fonts noto-fonts-emoji ttf-jetbrains-mono-nerd
+)
+
+package() {
+    # Files live next to this PKGBUILD in files/, laid out like the target system.
+    cd "$startdir/files"
+    find . -type f -print0 | while IFS= read -r -d '' f; do
+        install -Dm644 "$f" "$pkgdir/${f#./}"
+    done
+}
