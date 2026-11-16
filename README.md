@@ -2,7 +2,7 @@
 
 An Arch-based Linux distro focused on gaming, built to be lightweight, easy to rice, and nice to look at.
 
-**Status:** early development. Right now it builds a console-only live ISO with felineOS branding.
+**Status:** no.
 
 ## Roadmap
 1. **Base ISO**: boots, felineOS branding, reproducible build *(in progress)*
