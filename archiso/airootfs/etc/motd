@@ -1,0 +1,11 @@
+
+[38;2;255;140;66m  /\_/\   felineOS live[0m
+[38;2;255;140;66m ( o.o )  [0mArch-based, gaming-focused, Hyprland (coming soon)
+[38;2;255;140;66m  > ^ <[0m
+
+This is an early development build: a console-only live system.
+The felineOS installer does not exist yet; to install, follow the Arch
+guide with the [35mInstallation_guide[0m command.
+
+For Wi-Fi, use [35miwctl[0m. Ethernet with DHCP works automatically.
+

@@ -1,0 +1,5 @@
+# Build artifacts (multi-GB, never commit)
+/work/
+/out/
+*.iso
+*.qcow2

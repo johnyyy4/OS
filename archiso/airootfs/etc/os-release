@@ -1,0 +1,8 @@
+NAME="felineOS"
+PRETTY_NAME="felineOS"
+ID=felineos
+ID_LIKE=arch
+BUILD_ID=rolling
+ANSI_COLOR="38;2;255;140;66"
+HOME_URL="https://github.com/johnyyy4/OS"
+LOGO=archlinux-logo
