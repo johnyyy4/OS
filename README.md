@@ -1,6 +1,6 @@
 # felineOS 
 
-An Arch-based Linux distro focused on gaming, built to be lightweight, easy to rice, and nice to look at.
+An Arch-based Linux distro focused on cats, gaming, built to be lightweight and easy to rice
 
 **Status:** no.
 
