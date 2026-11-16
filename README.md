@@ -1,4 +1,4 @@
-# felineOS 😼
+# felineOS 🐈‍⬛
 
 An Arch-based Linux distro focused on cats, gaming, built to be lightweight and easy to rice
 
