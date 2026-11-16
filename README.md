@@ -23,12 +23,13 @@ sudo ./build.sh
 
 ## felineOS packages
 Everything felineOS-specific is shipped as normal pacman packages, so installed systems get fixes through `pacman -Syu`:
-- `felineos-desktop`: Hyprland and desktop apps, plus the Tabby theme installed as defaults in `/usr/share/felineos/config` (Hyprland, Waybar, fuzzel, kitty, mako) and wallpapers. We never overwrite files owned by other packages.
+- `felineos-desktop`: Hyprland and desktop apps, plus the Tabby theme installed as defaults in `/usr/share/felineos/config` (Hyprland, Waybar, fuzzel, mako) and `/etc/xdg/kitty` and wallpapers. We never overwrite files owned by other packages.
 - `felineos-gaming`: Steam, gamescope, MangoHud, GameMode, Mesa and Vulkan drivers for AMD and Intel.
 
 ### Ricing
 - **Hyprland:** `~/.config/hypr/hyprland.lua` loads the felineOS defaults with `dofile(...)`. Add your changes below that line and they override the defaults, while you still get theme updates.
-- **Waybar, fuzzel, kitty, mako:** copy the folder from `/usr/share/felineos/config/<app>/` to `~/.config/<app>/` and edit your copy. Yours wins.
+- **Waybar, fuzzel, mako:** copy the folder from `/usr/share/felineos/config/<app>/` to `~/.config/<app>/` and edit your copy. Yours wins.
+- **kitty:** copy `/etc/xdg/kitty/kitty.conf` to `~/.config/kitty/kitty.conf`.
 
 ## Testing in a VM
 Boot the ISO in QEMU/virt-manager with **UEFI, Secure Boot off**. archiso images aren't signed for Secure Boot.

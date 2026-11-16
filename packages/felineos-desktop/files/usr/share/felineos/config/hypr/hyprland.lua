@@ -44,9 +44,10 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("swaybg -m fill -i " .. wallpaper)
     -- Waybar would fall back to its own stock config in /etc/xdg, so point it at ours
     -- unless the user has their own in ~/.config/waybar.
-    hl.exec_cmd("[ -f ~/.config/waybar/config.jsonc ] || [ -f ~/.config/waybar/config ] && exec waybar || exec waybar -c /usr/share/felineos/config/waybar/config.jsonc -s /usr/share/felineos/config/waybar/style.css")
+    -- NOTE: use `test`, not `[ ... ]`: a leading "[...]" is Hyprland's exec-rules syntax.
+    hl.exec_cmd("test -f ~/.config/waybar/config.jsonc || test -f ~/.config/waybar/config && exec waybar || exec waybar -c /usr/share/felineos/config/waybar/config.jsonc -s /usr/share/felineos/config/waybar/style.css")
     -- mako doesn't search XDG_CONFIG_DIRS, so point it at ours unless the user has their own.
-    hl.exec_cmd("[ -f ~/.config/mako/config ] && exec mako || exec mako --config /usr/share/felineos/config/mako/config")
+    hl.exec_cmd("test -f ~/.config/mako/config && exec mako || exec mako --config /usr/share/felineos/config/mako/config")
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
 end)
 
