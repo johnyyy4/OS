@@ -6,7 +6,7 @@ pkgrel=1
 pkgdesc="felineOS gaming stack: Steam, gamescope, MangoHud, GameMode, AMD/Intel Vulkan"
 arch=('any')
 url="https://github.com/johnyyy4/OS"
-license=('LicenseRef-felineOS')   # TODO: pick a real license for the project
+license=('GPL-3.0-or-later')
 depends=(
     steam gamescope
     mangohud lib32-mangohud

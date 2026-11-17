@@ -7,7 +7,7 @@ pkgrel=1
 pkgdesc="felineOS Hyprland desktop: default configs, Tabby theme and wallpapers"
 arch=('any')
 url="https://github.com/johnyyy4/OS"
-license=('LicenseRef-felineOS')   # TODO: pick a real license for the project
+license=('GPL-3.0-or-later')
 depends=(
     hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
     hyprpolkitagent polkit qt6-wayland xorg-xwayland

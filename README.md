@@ -69,3 +69,8 @@ Resolution is automatic: Hyprland uses each monitor's native resolution (1080p, 
 ## Team
 - johnyyy4
 - pokoplokop2008
+
+## License
+felineOS is free software, licensed under the [GNU General Public License v3.0 or later](LICENSE) (GPL-3.0-or-later).
+The `archiso/` profile is based on Arch Linux's official `releng` profile from [archiso](https://gitlab.archlinux.org/archlinux/archiso), which is also GPL-3.0-or-later.
+Packages installed into the ISO (Hyprland, Steam, Mesa, ...) keep their own licenses.
