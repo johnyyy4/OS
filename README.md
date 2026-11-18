@@ -25,6 +25,24 @@ sudo ./build.sh
 Everything felineOS-specific is shipped as normal pacman packages, so installed systems get fixes through `pacman -Syu`:
 - `felineos-desktop`: Hyprland and desktop apps, plus the Tabby theme installed as defaults in `/usr/share/felineos/config` (Hyprland, Waybar, fuzzel, mako) and `/etc/xdg/kitty` and wallpapers. We never overwrite files owned by other packages.
 - `felineos-gaming`: Steam, gamescope, MangoHud, GameMode, Mesa and Vulkan drivers for AMD and Intel.
+- `felineos-keyring`: the team's public signing keys (from `keyring/`), so pacman can verify the `[felineos]` repo. Also ships `/etc/pacman.d/felineos-mirrorlist`.
+
+### Package repo
+Installed systems get our packages from a signed pacman repo on GitHub Releases (tag `repo-x86_64`), with this in `/etc/pacman.conf`:
+```ini
+[felineos]
+SigLevel = Required
+Include = /etc/pacman.d/felineos-mirrorlist
+```
+pacman only accepts packages and databases signed by a key in `felineos-keyring`.
+
+**Publishing:** bump `pkgrel` (or `pkgver`) of every package you changed, commit, push, then run:
+```bash
+./scripts/publish-repo.sh            # add --dry-run to build and sign without uploading
+```
+It builds only packages that are newer than the published ones, signs them with your key (gpg asks for your passphrase), and uploads them. It refuses to publish uncommitted work, or a changed package whose version wasn't bumped.
+
+**Keys:** a new or lost key means changing `keyring/*.asc` and the fingerprint lists in `packages/felineos-keyring/PKGBUILD`, then bumping its `pkgrel` and publishing. A lost key goes into `_revoked`, not just deleted.
 
 ### Ricing
 - **Hyprland:** `~/.config/hypr/hyprland.lua` loads the felineOS defaults with `dofile(...)`. Add your changes below that line and they override the defaults, while you still get theme updates.
@@ -65,6 +83,8 @@ Resolution is automatic: Hyprland uses each monitor's native resolution (1080p, 
 - `assets/wallpapers/`: wallpaper sources (SVG). Re-render with `rsvg-convert -w 3840 -h 2160 black-cat.svg -o black-cat.png`
   - `efiboot/`, `grub/`, `syslinux/`: boot menus
 - `build.sh`: builds the ISO
+- `scripts/publish-repo.sh`: publishes the signed `[felineos]` package repo
+- `keyring/`: the team's public package signing keys
 
 ## Team
 - johnyyy4

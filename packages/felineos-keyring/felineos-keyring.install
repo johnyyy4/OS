@@ -1,0 +1,13 @@
+# Same guard as archlinux-keyring: only populate once pacman's keyring exists
+# (inside mkarchiso/pacstrap it may not yet; pacman-init / the installer populate later).
+post_upgrade() {
+    if usr/bin/pacman-key -l >/dev/null 2>&1; then
+        usr/bin/pacman-key --populate felineos
+    fi
+}
+
+post_install() {
+    if [ -x usr/bin/pacman-key ]; then
+        post_upgrade
+    fi
+}

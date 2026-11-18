@@ -1,0 +1,8 @@
+# felineOS package repository. Used from /etc/pacman.conf:
+#
+#   [felineos]
+#   SigLevel = Required
+#   Include = /etc/pacman.d/felineos-mirrorlist
+#
+# Packages and the database are signed by the keys in felineos-keyring.
+Server = https://github.com/johnyyy4/OS/releases/download/repo-x86_64

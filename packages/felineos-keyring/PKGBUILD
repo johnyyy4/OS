@@ -1,0 +1,53 @@
+# Maintainer: felineOS team (johnyyy4, pokoplokop2008)
+# The public keys that sign felineOS packages, so pacman can verify the [felineos] repo.
+# Works like archlinux-keyring: the keys go to /usr/share/pacman/keyrings and
+# `pacman-key --populate felineos` (run by felineos-keyring.install) trusts them.
+#
+# Adding/removing a key: change keyring/*.asc AND the fingerprint lists below, bump pkgrel.
+# A lost or compromised key goes into _revoked (and out of _trusted), never just deleted.
+pkgname=felineos-keyring
+pkgver=1
+pkgrel=1
+pkgdesc="felineOS package signing keys"
+arch=('any')
+url="https://github.com/johnyyy4/OS"
+license=('GPL-3.0-or-later')
+depends=('pacman')
+install=felineos-keyring.install
+backup=('etc/pacman.d/felineos-mirrorlist')
+
+# Fingerprints the team verified with each other. The build fails if keyring/*.asc
+# contains any key that is not listed here, or misses one that is.
+_trusted=(
+    F9F3FA24FB6AF30153C4A1294F650D879952E8B5  # pokoplokop2008
+    777E1CC4F5CD5A4F1760567B786C4A571DC58A1E  # johnyyy4
+)
+_revoked=()
+
+build() {
+    local keydir="$startdir/../../keyring"
+    # Private temp keyring via --homedir (not GNUPGHOME: makepkg would keep it for --sign).
+    local gpg=(gpg --homedir "$srcdir/gnupg" --batch)
+    mkdir -p -m 700 "$srcdir/gnupg"
+    "${gpg[@]}" --quiet --import "$keydir"/*.asc
+
+    local found expected
+    found=$("${gpg[@]}" --with-colons --list-keys | awk -F: '/^pub/{p=1;next} p&&/^fpr/{print $10;p=0}' | sort)
+    expected=$(printf '%s\n' "${_trusted[@]}" "${_revoked[@]}" | sort)
+    if [[ $found != "$expected" ]]; then
+        error "keyring/*.asc does not match the fingerprints in this PKGBUILD"
+        printf 'found:\n%s\nexpected:\n%s\n' "$found" "$expected" >&2
+        return 1
+    fi
+
+    "${gpg[@]}" --armor --export "${_trusted[@]}" "${_revoked[@]}" > felineos.gpg
+    local fpr
+    for fpr in "${_trusted[@]}"; do printf '%s:4:\n' "$fpr"; done > felineos-trusted
+    printf '%s\n' "${_revoked[@]}" | sed '/^$/d' > felineos-revoked
+}
+
+package() {
+    install -Dm644 -t "$pkgdir/usr/share/pacman/keyrings" \
+        felineos.gpg felineos-trusted felineos-revoked
+    install -Dm644 "$startdir/felineos-mirrorlist" "$pkgdir/etc/pacman.d/felineos-mirrorlist"
+}
